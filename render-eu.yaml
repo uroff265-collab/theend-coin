@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: theend-coin-eu
+    runtime: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: theend-coin-db
+          property: connectionString
