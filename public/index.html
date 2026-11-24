@@ -27,6 +27,25 @@
       </button>
       <p id="message">Открой игру через Telegram-бота</p>
     </section>
+    <section class="game-panels">
+      <article class="game-card">
+        <div class="panel-heading"><span>Ежедневный бонус</span><span class="reward">+50 ₮</span></div>
+        <p>Заходи каждый день и забирай монеты.</p>
+        <button id="bonus" class="action-button" type="button" disabled>Забрать бонус</button>
+        <div id="bonus-status" class="panel-status">Загрузка…</div>
+      </article>
+      <article class="game-card">
+        <div class="panel-heading"><span>Задание дня</span><span class="reward">+25 ₮</span></div>
+        <p>Сделай 50 нажатий на монету за день.</p>
+        <div class="progress-track"><div id="task-progress-bar" class="progress-fill"></div></div>
+        <div id="task-progress" class="panel-status">0 / 50 нажатий</div>
+        <button id="task-claim" class="action-button" type="button" disabled>Забрать награду</button>
+      </article>
+      <article class="game-card leaderboard-card">
+        <div class="panel-heading"><span>Таблица лидеров</span><span id="my-rank" class="panel-status">Место: —</span></div>
+        <ol id="leaderboard" class="leaderboard"><li>Загрузка рейтинга…</li></ol>
+      </article>
+    </section>
     <footer>Игровые очки · Не являются денежными средствами</footer>
   </main>
   <script src="/app.js"></script>
