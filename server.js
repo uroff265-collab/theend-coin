@@ -4,7 +4,13 @@ const path = require("path");
 const { Pool } = require("pg");
 
 const app = express();
+app.disable("x-powered-by");
 app.use(express.json({ limit: "32kb" }));
+app.use((req, res, next) => {
+  if (req.path.startsWith("/api/")) res.set("Cache-Control", "no-store");
+  res.set("X-Content-Type-Options", "nosniff");
+  next();
+});
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = Number(process.env.PORT || 3000);
@@ -13,6 +19,9 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const pool = DATABASE_URL
   ? new Pool({
       connectionString: DATABASE_URL,
+      max: 5,
+      connectionTimeoutMillis: 10000,
+      idleTimeoutMillis: 30000,
       ssl: process.env.PGSSLMODE === "disable" ? false : { rejectUnauthorized: false }
     })
   : null;
@@ -27,7 +36,7 @@ function verifyTelegramInitData(initData) {
   if (!Number.isFinite(authDate) || Math.abs(Date.now() / 1000 - authDate) > 86400) return null;
 
   const dataCheckString = [...params.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
     .map(([key, value]) => key + "=" + value)
     .join("\n");
 
@@ -105,8 +114,9 @@ app.get("/api/coin/me", requireUser, async (req, res) => {
 
 app.post("/api/coin/mint", requireUser, async (req, res) => {
   if (!pool) return res.status(503).json({ ok: false, error: "database_not_configured" });
-  const client = await pool.connect();
+  let client;
   try {
+    client = await pool.connect();
     await client.query("BEGIN");
     const u = req.telegramUser;
     await client.query(
@@ -135,11 +145,11 @@ app.post("/api/coin/mint", requireUser, async (req, res) => {
     await client.query("COMMIT");
     res.json({ ok: true, balance: Number(updated.rows[0].balance), lastMintAt: updated.rows[0].last_mint_at });
   } catch (error) {
-    await client.query("ROLLBACK").catch(() => {});
+    if (client) await client.query("ROLLBACK").catch(() => {});
     console.error("POST /api/coin/mint:", error);
     res.status(500).json({ ok: false, error: "server_error" });
   } finally {
-    client.release();
+    if (client) client.release();
   }
 });
 
