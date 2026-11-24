@@ -1,53 +1,25 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#101018">
-  <title>TheEnd Coin</title>
-  <link rel="stylesheet" href="/style.css">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#090b1b"><meta name="description" content="TheEnd Coin — играй, собирай монеты и поднимайся в таблице лидеров.">
+<title>TheEnd Coin — Играй и собирай</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css"><script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <main class="app">
-    <header>
-      <div class="brand-mark">T</div>
-      <div><div class="brand">THEEND</div><div class="subtitle">COIN GAME</div></div>
-      <div class="status" id="status">Подключение</div>
-    </header>
-    <section class="balance-card">
-      <div class="eyebrow">ТВОЙ БАЛАНС</div>
-      <div class="balance" id="balance">—</div>
-      <div class="coin-label"><span class="coin-small">₮</span> THEEND COINS</div>
-    </section>
-    <section class="tap-section">
-      <button id="mint" class="mint-button" type="button" disabled aria-label="Чеканить монету">
-        <span class="coin-emblem">₮</span>
-        <span class="tap-hint">НАЖМИ, ЧТОБЫ ЧЕКАНИТЬ</span>
-      </button>
-      <p id="message">Открой игру через Telegram-бота</p>
-    </section>
-    <section class="game-panels">
-      <article class="game-card">
-        <div class="panel-heading"><span>Ежедневный бонус</span><span class="reward">+50 ₮</span></div>
-        <p>Заходи каждый день и забирай монеты.</p>
-        <button id="bonus" class="action-button" type="button" disabled>Забрать бонус</button>
-        <div id="bonus-status" class="panel-status">Загрузка…</div>
-      </article>
-      <article class="game-card">
-        <div class="panel-heading"><span>Задание дня</span><span class="reward">+25 ₮</span></div>
-        <p>Сделай 50 нажатий на монету за день.</p>
-        <div class="progress-track"><div id="task-progress-bar" class="progress-fill"></div></div>
-        <div id="task-progress" class="panel-status">0 / 50 нажатий</div>
-        <button id="task-claim" class="action-button" type="button" disabled>Забрать награду</button>
-      </article>
-      <article class="game-card leaderboard-card">
-        <div class="panel-heading"><span>Таблица лидеров</span><span id="my-rank" class="panel-status">Место: —</span></div>
-        <ol id="leaderboard" class="leaderboard"><li>Загрузка рейтинга…</li></ol>
-      </article>
-    </section>
-    <footer>Игровые очки · Не являются денежными средствами</footer>
-  </main>
-  <script src="/app.js"></script>
-</body>
-</html>
+<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+<main class="app">
+<header class="topbar"><div class="brand-lockup"><div class="brand-mark"><span>T</span><i></i></div><div><div class="brand">THEEND<span>COIN</span></div><div class="subtitle">ARCADE CLUB</div></div></div><div class="status"><span class="status-dot"></span><span id="status">Подключение</span></div></header>
+<section class="hero-copy"><div class="hero-kicker"><span class="sparkle">✦</span> ТВОЯ ИГРА. ТВОИ ПРАВИЛА.</div><h1>СОБИРАЙ.<br><span>ПОБЕЖДАЙ.</span></h1><p>Каждое нажатие приближает тебя к вершине рейтинга.</p></section>
+<section class="balance-card"><div class="balance-topline"><span class="eyebrow">ТВОЙ БАЛАНС</span><span class="live-pill"><i></i> LIVE</span></div><div class="balance-row"><div class="balance" id="balance">—</div><div class="balance-coin">₮</div></div><div class="coin-label">THEEND COINS <span>•</span> ИГРОВЫЕ МОНЕТЫ</div><div class="balance-shine"></div></section>
+<section class="tap-section"><div class="tap-heading"><span class="tap-line"></span> ДОБЫЧА МОНЕТ <span class="tap-line"></span></div><button id="mint" class="mint-button" type="button" disabled aria-label="Чеканить монету"><span class="coin-orbit orbit-a"></span><span class="coin-orbit orbit-b"></span><span class="coin-core"><span class="coin-emblem">₮</span></span><span class="tap-hint">TAP TO EARN</span></button><p id="message">Открой игру через Telegram-бота</p></section>
+<section class="game-panels">
+<article class="game-card bonus-card"><div class="card-icon">🎁</div><div class="panel-heading"><span>Ежедневный бонус</span><span class="reward">+50 ₮</span></div><p>Заглядывай каждый день — забирай свой подарок.</p><button id="bonus" class="action-button" type="button" disabled>Забрать бонус <span>↗</span></button><div id="bonus-status" class="panel-status">Загрузка…</div></article>
+<article class="game-card task-card"><div class="card-icon">⚡</div><div class="panel-heading"><span>Задание дня</span><span class="reward">+25 ₮</span></div><p>Сделай 50 нажатий и забери награду.</p><div class="progress-meta"><span>ТВОЙ ПРОГРЕСС</span><strong id="task-progress">0 / 50 нажатий</strong></div><div class="progress-track"><div id="task-progress-bar" class="progress-fill"></div></div><button id="task-claim" class="action-button" type="button" disabled>Забрать награду <span>↗</span></button></article>
+<article class="game-card leaderboard-card"><div class="leaderboard-title"><div><div class="section-kicker">КТО НА ВЕРШИНЕ?</div><div class="panel-heading"><span>Таблица лидеров</span></div></div><div class="rank-chip" id="my-rank">Твоё место: —</div></div><ol id="leaderboard" class="leaderboard"><li>Загрузка рейтинга…</li></ol></article>
+</section>
+<footer><span class="footer-brand">THEEND COIN</span><span>Игровые очки · Не являются денежными средствами</span></footer>
+</main><script src="/app.js"></script>
+</body></html>
