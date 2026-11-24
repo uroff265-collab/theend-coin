@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#101018">
+  <title>TheEnd Coin</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="brand-mark">T</div>
+      <div><div class="brand">THEEND</div><div class="subtitle">COIN GAME</div></div>
+      <div class="status" id="status">Подключение</div>
+    </header>
+    <section class="balance-card">
+      <div class="eyebrow">ТВОЙ БАЛАНС</div>
+      <div class="balance" id="balance">—</div>
+      <div class="coin-label"><span class="coin-small">₮</span> THEEND COINS</div>
+    </section>
+    <section class="tap-section">
+      <button id="mint" class="mint-button" type="button" disabled aria-label="Чеканить монету">
+        <span class="coin-emblem">₮</span>
+        <span class="tap-hint">НАЖМИ, ЧТОБЫ ЧЕКАНИТЬ</span>
+      </button>
+      <p id="message">Открой игру через Telegram-бота</p>
+    </section>
+    <footer>Игровые очки · Не являются денежными средствами</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
